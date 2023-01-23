@@ -7,16 +7,15 @@ import java.util.List;
 import java.util.StringTokenizer;
 
 public class Main {
-
     public void Solution(int n, int m, List<Integer> nList, List<Integer> mList){
         int i=0, j=0;
-        while(i<nList.size() || j<mList.size()){
-            if(i==nList.size()){
+        while(i<n || j<m){
+            if(i==n){
                 System.out.print(mList.get(j)+" ");
                 j++;
                 continue;
             }
-            if(j==mList.size()){
+            if(j==m){
                 System.out.print(nList.get(i)+" ");
                 i++;
                 continue;
