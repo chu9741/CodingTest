@@ -1,4 +1,4 @@
-package Inflearn_Java_Algorithm.Ch7_Recursive_Tree_Graph.q11;
+package Inflearn_Java_Algorithm.Ch7_Recursive_Tree_Graph.q12;
 
 
 import java.io.BufferedReader;
