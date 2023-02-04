@@ -11,6 +11,7 @@ public class Main {
     static ArrayList<Integer> arrayList;
     static ArrayList<String> answer;
     static Boolean[] isVisited;
+
     public void DFS(int v, int n){
         int aSum=0,bSum=0;
         if(v==n){
@@ -20,7 +21,6 @@ public class Main {
                 if (!isVisited[i])
                     bSum+=arrayList.get(i);
             }
-//            System.out.println(aSum+" "+bSum);
             if(aSum==bSum)
                 answer.add("YES");
         }
