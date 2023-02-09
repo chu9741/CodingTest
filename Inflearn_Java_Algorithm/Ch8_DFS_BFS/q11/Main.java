@@ -8,8 +8,9 @@ import java.util.StringTokenizer;
 public class Main {
     static int cnt=Integer.MAX_VALUE;
     boolean[][] isVisited=new boolean[9][9];
+    static int tmp=0;
 
-    public void DFS(int[][] arr, int x, int y, int tmp){
+    public void DFS(int[][] arr, int x, int y){
         if(x==7 && y==7){
 //            System.out.println("cnt ,tmp = " +cnt+ " "+tmp);
             cnt=Math.min(cnt,tmp);
@@ -21,25 +22,29 @@ public class Main {
             isVisited[x][y]=true;
 //            tmp++;
             if(!isVisited[x-1][y] && arr[x-1][y]==0){
-                DFS(arr,x-1,y,++tmp);
+                tmp++;
+                DFS(arr,x-1,y);
                 isVisited[x-1][y]=false;
                 tmp--;
 //                System.out.println("x,y, tmp = "+x+" "+y+" "+tmp);
             }
             if(!isVisited[x][y+1] && arr[x][y+1]==0){
-                DFS(arr,x,y+1,++tmp);
+                tmp++;
+                DFS(arr,x,y+1);
                 isVisited[x][y+1]=false;
                 tmp--;
 //                System.out.println("x,y, tmp = "+x+" "+y+" "+tmp);
             }
             if(!isVisited[x+1][y] && arr[x+1][y]==0){
-                DFS(arr,x+1,y,++tmp);
+                tmp++;
+                DFS(arr,x+1,y);
                 isVisited[x+1][y]=false;
                 tmp--;
 //                System.out.println("x,y, tmp = "+x+" "+y+" "+tmp);
             }
             if(!isVisited[x][y-1] && arr[x][y-1]==0){
-                DFS(arr,x,y-1,++tmp);
+                tmp++;
+                DFS(arr,x,y-1);
                 isVisited[x][y-1]=false;
                 tmp--;
 //                System.out.println("x,y, tmp = "+x+" "+y+" "+tmp);
@@ -65,7 +70,7 @@ public class Main {
 
         }
 
-        main.DFS(arr,1,1,0);
+        main.DFS(arr,1,1);
         if(cnt!=Integer.MAX_VALUE)
             System.out.println(cnt);
         else System.out.println(-1);
