@@ -20,12 +20,12 @@ class Point{
 public class Main {
     static boolean[][] isVisited;
     static int cnt=0;
+    int[] dx = {-1,-1,0,1,1,1,0,-1};
+    int[] dy = {0,1,1,1,0,-1,-1,-1};
 
     public void BFS(int x, int y,int n, int[][] arr){
         Queue<Point> queue =new LinkedList<>();
         Queue<Point> countQueue = new LinkedList<>();
-        int[] dx = {-1,-1,0,1,1,1,0,-1};
-        int[] dy = {0,1,1,1,0,-1,-1,-1};
 
         for(int q=1; q<=n; q++){
             for(int w=1; w<=n; w++){
@@ -56,60 +56,36 @@ public class Main {
                     }
                 }
             }
-//            for(int i=1; i<=n; i++){
-//                for(int j=1; j<=n; j++){
-//                    System.out.printf("%8b",isVisited[i][j]);
-//                }
-//                System.out.println();
-//            }
-//            System.out.println();
         }
-
-
-
     }
 
-//    public void DFS(int x, int y, int n, int[][] arr){
-//        isVisited[x][y]=true;
-//
-//        if(arr[x][y]==1 && !isVisited[x][y]){
-//            if(arr[x-1][y]==1 && !isVisited[x-1][y]){
-//                DFS(x-1,y,n,arr);
-////                isVisited[x-1][y]=false;
-//            }
-//            if(arr[x][y+1]==1 && !isVisited[x][y+1]){
-//                DFS(x,y+1,n,arr);
-////                isVisited[x][y+1]=false;
-//
-//            }
-//            if(arr[x+1][y]==1 && !isVisited[x+1][y]){
-//                DFS(x+1,y,n,arr);
-////                isVisited[x+1][y]=false;
-//
-//            }
-//            if(arr[x][y-1]==1 && !isVisited[x][y-1]){
-//                DFS(x,y-1,n,arr);
-////                isVisited[x][y-1]=false;
-//            }
-//            //빠져나와쓸때
-//        }
-//        else {
-//
-//        }
-//        for()
-//
-//
-//
-////        for(int i=1; i<=n; i++){
-////            for(int j=1; j<=n; j++){
-////                if(arr[i][j]==1 && !isVisited[i][j]){
-////                    DFS
-////
-////
-////                }
-////            }
-//    }
 
+    public void DFS(int x, int y, int n, int[][] arr){
+        isVisited[x][y]=true;
+
+        Point tmp = new Point(x,y);
+        isVisited[tmp.x][tmp.y]=true;
+
+        for(int i=0; i<8; i++){
+            int nx = tmp.x+dx[i];
+            int ny = tmp.y+dy[i];
+
+            if(arr[nx][ny]==1 && !isVisited[nx][ny]){
+                DFS(nx,ny,n,arr);
+            }
+        }
+    }
+
+    public void Solution(int n, int[][] arr){
+        for(int i=1; i<=n; i++){
+            for(int j=1; j<=n; j++){
+                if(arr[i][j]==1 && !isVisited[i][j]){
+                    DFS(i,j,n,arr);
+                    cnt++;
+                }
+            }
+        }
+    }
 
     public static void main(String[] args) throws Exception{
         Main main = new Main();
@@ -126,10 +102,10 @@ public class Main {
         }
 
         isVisited=new boolean[n+2][n+2];
+//        main.BFS(1,1,n,arr);
 
-        main.BFS(1,1,n,arr);
+        main.Solution(n,arr);
+
         System.out.println(cnt);
-
     }
-
 }
