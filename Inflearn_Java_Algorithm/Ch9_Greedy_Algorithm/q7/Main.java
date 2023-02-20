@@ -57,6 +57,8 @@ public class Main {
                 union(minNode.start,minNode.end);
                 sum+=minNode.weight;
                 cnt++;
+                arrayList.remove(minNode);
+
             }
             if(cnt==v-1)
                 break;
