@@ -31,7 +31,7 @@ class Solution {
             int[] disX = {-1,0,1,0}; // 동서남북
             int[] disY = {0,1,0,-1};
             
-            if( key == itemX*2 && value == itemY*2)
+            if(isVisited[itemX*2][itemY*2]!=0)
                 break;
             
             for(int i=0; i<4; i++){ // 동서남북 좌표 확인하며 길찾기
@@ -39,12 +39,9 @@ class Solution {
                 dirTmp.put(key+disX[i],value+disY[i]);
                 
                 if(key+disX[i] == itemX*2 && value+disY[i] == itemY*2){
-                    //도착
-                    if(isVisited[key+disX[i]][value+disY[i]]==0)
-                        isVisited[key+disX[i]][value+disY[i]] =isVisited[key][value]+1;
-                    else{
-                        isVisited[key+disX[i]][value+disY[i]] =Math.min(isVisited[key][value]+1,isVisited[key+disX[i]][value+disY[i]]);                       
-                    }
+                    //도착         
+                    isVisited[key+disX[i]][value+disY[i]] =isVisited[key][value]+1;
+                    break;                  
                 }
                 else{
                     if(isVisited[key+disX[i]][value+disY[i]]==0 && set.contains(dirTmp)){
@@ -52,8 +49,7 @@ class Solution {
                         queue.offer(dirTmp);
                         isVisited[key+disX[i]][value+disY[i]] =isVisited[key][value]+1;
                     }
-                }
-      
+                } 
             }
         } 
         
