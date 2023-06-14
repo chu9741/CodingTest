@@ -10,7 +10,7 @@ class Solution {
     
     int max=0;
     int[] finalArr = new int[11];
-    int idx=0;
+
     
     public void DFS(int k, int n, int[] info, int[] result){
         if(k==n){ // n으로 바꾸자
@@ -19,10 +19,6 @@ class Solution {
                 max=score;
                 for(int l=0; l<=10; l++){
                     finalArr[l]=result[l];
-                    if(result[l]!=0){
-                        idx=l;
-                    }
-                    // System.out.print(finalArr[l]);
                 }
             }
         }
@@ -47,7 +43,7 @@ class Solution {
     }
     
     public boolean isMoreLowerNumbers(int[] finalArr, int[] result){
-        for(int i=10; i>=idx; i--){
+        for(int i=10; i>=0; i--){
             if(result[i]>finalArr[i]){
                 return true;
             }
